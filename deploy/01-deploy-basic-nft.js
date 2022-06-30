@@ -4,7 +4,7 @@ const { verify } = require("../utils/verify")
 
 module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments
-    const { deployer } = getNamedAccounts()
+    const { deployer } = await getNamedAccounts()
 
     log("-----------------------------")
     const args = [] //constructor does not take arguments
@@ -21,3 +21,5 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     }
     log("-----------------------------")
 }
+
+module.exports.tags = ["all", "basicnft", "main"]
