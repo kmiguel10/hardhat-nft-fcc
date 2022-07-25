@@ -14,7 +14,7 @@ module.exports = async function ({ getNamedAccounts }) {
     const randomIpfsNft = await ethers.getContract("RandomIpfsNft", deployer)
     const mintFee = await randomIpfsNft.getMintFee()
 
-    await new Promise(async (resolve, reject) => {
+    await new Promise(async (resolve) => {
         setTimeout(resolve, 300000) //5 minutes
         randomIpfsNft.once("NftMinted", async function () {
             resolve()
@@ -30,7 +30,7 @@ module.exports = async function ({ getNamedAccounts }) {
     })
     console.log(`Random IPFS NFT index 0 tokenURI: ${await randomIpfsNft.tokenURI(0)}`)
 
-    // //Dynamic SVG NFT
+    //Dynamic SVG NFT
     const highValue = ethers.utils.parseEther("4000")
     const dynamicSvgNft = await ethers.getContract("DynamicSvgNft", deployer)
     const dynamicSvgNftMintTx = await dynamicSvgNft.mintNft(highValue.toString())
